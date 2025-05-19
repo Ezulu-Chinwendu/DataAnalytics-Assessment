@@ -8,21 +8,17 @@ The SQL solution is structured in three main steps:
 ##### 1. Identify Funded Savings Accounts
 
 In the savings_summary CTE, I filtered for accounts with amount > 0 to ensure we only consider active, funded savings.
-
 I then grouped by owner_id to count how many savings accounts each user has and the total deposits across them.
 
 ##### 2. Identify Funded Plans
 
 Similarly, in the plan_summary CTE, I filtered for plans with amount > 0 to ensure we only consider funded plans.
-
 Grouping by owner_id allows us to count how many funded plans each user has.
 
 ##### 3. Join with the Users Table
 
 I joined both summaries with the users_customuser table using owner_id.
-
 The final SELECT outputs the user's name, counts for savings and plans, and the total deposit amount from savings.
-
 The result is sorted in descending order of total deposits to highlight high-value customers.
 
 ##### Challenges & Resolutions
@@ -42,12 +38,10 @@ Next, I calculated each customer's average monthly transaction count by dividing
 
 ##### 4. Categorize Customers:
 I then classified each customer into a frequency bucket:
-
 High Frequency: 10 or more transactions/month
-
 Medium Frequency: Between 3 and 9 transactions/month
-
 Low Frequency: 2 or fewer transactions/month
+
 This classification helps us understand user engagement levels.
 
 ##### 4. Aggregate Results:
@@ -56,10 +50,9 @@ Finally, I aggregated the data to find out how many customers fall into each fre
 ##### Output Columns:
 
 frequency_category: Segment label based on transaction behavior
-
 customer_count: Number of customers in each segment
-
 avg_transactions_per_month: Segment-level average, rounded to 1 decimal place
+
 
 
 ### Question 3: Account Inactivity Alert
@@ -90,19 +83,14 @@ I used the created_on date as a fallback to ensure all plans are included, even 
 
 
 ### Question 4: Customer Lifetime Value (CLV) Estimation
-##### Scenario:
-Marketing wants to estimate the Customer Lifetime Value (CLV) based on account tenure and transaction volume, using a simplified model.
+##### Scenario: Marketing wants to estimate the Customer Lifetime Value (CLV) based on account tenure and transaction volume, using a simplified model.
 
 ##### My Approach:
 
 I calculated account tenure in months as the difference between the signup date and today.
-
 I counted only positive, successful transactions to ensure accurate transaction volume.
-
 I estimated CLV by projecting annual profit based on the average profit per transaction (0.1% of average transaction value) scaled by the monthly transaction rate over the customer's tenure.
-
 I used a LEFT JOIN to include all customers, even those with no transactions yet.
-
 The result is ordered by estimated CLV from highest to lowest to prioritize the most valuable customers.
 
 
