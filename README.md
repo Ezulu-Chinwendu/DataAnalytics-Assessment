@@ -25,14 +25,13 @@ The final SELECT outputs the user's name, counts for savings and plans, and the 
 
 The result is sorted in descending order of total deposits to highlight high-value customers.
 
-### Challenges & Resolutions
+##### Challenges & Resolutions
 Avoiding Data Duplication
 A direct join between savings_savingsaccount and plans_plan inflated row counts due to one-to-many relationships. I resolved this by aggregating data first in separate CTEs, ensuring accurate counts and sums.
 
 
 ### Question 2: Transaction Frequency Analysis
-##### Scenario:
-The finance team wants to analyze how often customers transact, so we can segment them into groups like frequent and occasional users. This helps in building engagement strategies based on customer behavior.
+##### Scenario: The finance team wants to analyze how often customers transact, so we can segment them into groups like frequent and occasional users. This helps in building engagement strategies based on customer behavior.
 
 ##### My Approach:
 ##### 1. Calculate Total Transactions and Active Months:
@@ -64,8 +63,7 @@ avg_transactions_per_month: Segment-level average, rounded to 1 decimal place
 
 
 ### Question 3: Account Inactivity Alert
-##### Scenario:
-The operations team wants to identify active accounts whether savings or investment that have not received any inflow in the past year. This helps surface dormant accounts for potential follow-up or re-engagement strategies.
+##### Scenario: The operations team wants to identify active accounts whether savings or investment that have not received any inflow in the past year. This helps surface dormant accounts for potential follow-up or re-engagement strategies.
 
 ##### My Approach
 I approached this task by breaking it down into logical steps to ensure accuracy and clarity:
